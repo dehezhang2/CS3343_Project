@@ -13,7 +13,7 @@ public class Main {
 		return mainpage.getLocation();
 	}
 	public static void setMainPageLocation(Point p) {
-		mainpage.setLocation(p);
+		mainpage.setLocation(p);			
 	}
 	
 	public static void main(String agrs[]) {	      

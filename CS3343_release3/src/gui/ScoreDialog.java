@@ -13,31 +13,25 @@ public class ScoreDialog extends JDialog implements ButtonBindable{
 	/**
 	 * 
 	 */
+	private static final String[] columnNames = {"Name", "Score", "Time"};
+	private JFrame father;
 	
-	//private JPanel ScorePanel;
-	private JTable ScoreTable;
-//	private JButton button;
-	private String[] columnNames = {"Name", "Score", "Time"};
-
-	public ScoreDialog(Object[][] arr, JFrame f) {
+	public ScoreDialog(JFrame f) {
 		super(f, true);
-		
+
 		setTitle("ScoreBoard");
 		setSize(400,400);
-		setBounds(f.getBounds().x+75, f.getBounds().y+75, 500, 350);
-		//ScorePanel = new JPanel();
-//		button = new JButton("save as");
-		Container ScorePanel = this.getContentPane();
-		ScoreTable = new JTable(arr, columnNames);
 		
-		placeComponents(ScorePanel);
+		this.father = f;
+		renderTable(this.getContentPane());
 		setVisible(false);
 	}
 
-	private void placeComponents(Container panel) {
-		panel.add(new JScrollPane(ScoreTable));
-		ScoreTable.setEnabled(false);
-		
+	private void renderTable(Container panel) {
+		ScoreBoard scoreboard = ScoreBoard.getInstance();
+		JTable scoretable = new JTable(scoreboard.getScores("data/1.txt"), columnNames);
+		panel.add(new JScrollPane(scoretable));
+		scoretable.setEnabled(false);
 	}
 
 	@Override
@@ -50,7 +44,8 @@ public class ScoreDialog extends JDialog implements ButtonBindable{
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-		
+		this.renderTable(this.getContentPane());
+		setBounds(this.father.getBounds().x+75, this.father.getBounds().y+75, 500, 350);
 	}
 	
 	

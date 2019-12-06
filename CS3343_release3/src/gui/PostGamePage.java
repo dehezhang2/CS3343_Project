@@ -26,7 +26,6 @@ import game.Main;
 
 public class PostGamePage extends JFrame {
 	private JLabel back;
-	private int GameSize;
 	private JLabel label;
 	private JButton home, restart,score;
 	private boolean is_finished;
@@ -36,7 +35,7 @@ public class PostGamePage extends JFrame {
 	private ScoreBoard scoreboard;
 	private int points;
 	
-	public PostGamePage(boolean finished, int gamesize,String username,GamePage gp, int points) {
+	public PostGamePage(boolean finished, String username,int points) {
 		super("Limited Time");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/icon.png")));
 		setSize(700, 600);
@@ -51,7 +50,6 @@ public class PostGamePage extends JFrame {
 		getLayeredPane().add(back, Integer.valueOf(Integer.MIN_VALUE));
 
 		this.is_finished=finished;
-		this.GameSize=gamesize;
 		this.username=username;
 		this.postgame=this;
 		this.points = points;
@@ -96,27 +94,26 @@ public class PostGamePage extends JFrame {
 			}
 		});
 
-		this.restart.addActionListener(new ActionListener() {	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Point p = postgame.getLocation();
-				postgame.dispose();
-				GamePage GamePage;
-				GamePage = new GamePage(GameSize - 2, username);
-				GamePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				GamePage.setLayout(null);
-				GamePage.setResizable(false);
-				GamePage.setLocation(p);
-			}
-		});
+//		this.restart.addActionListener(new ActionListener() {	
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Point p = postgame.getLocation();
+//				postgame.dispose();
+//				GamePage GamePage;
+//				GamePage = new GamePage(GameSize - 2, username);
+//				GamePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//				GamePage.setLayout(null);
+//				GamePage.setResizable(false);
+//				GamePage.setLocation(p);
+//			}
+//		});
 		
 		this.score.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				scoreboard = new ScoreBoard();
-				scoreboard.showScoreBoard("data/1.txt");
-				Object[][] arr = scoreboard.getScores();
-				scorepage = new ScoreDialog(arr, postgame);
+				scoreboard = ScoreBoard.getInstance();
+				scoreboard.readScoreBoard("data/1.txt");
+				scorepage = new ScoreDialog(postgame);
 				scorepage.setVisible(true);
 				scorepage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
