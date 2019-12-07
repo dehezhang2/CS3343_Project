@@ -26,7 +26,7 @@ public class GamePageController implements ButtonBindable{
 		// TODO Auto-generated method stub
 		if(!this.username.equals("")) {
 			Point p = this.father.getLocation();
-			if(!(this.father instanceof GamePage))this.father.dispose();
+			this.father.dispose();
 			this.father = null;
 			
 			this.gamepage = new GamePage(this.gamesize, this.username, this.father);
@@ -46,7 +46,7 @@ public class GamePageController implements ButtonBindable{
 		HashMap<String, String> gameinfo = this.father.getInfo();
 		this.username = gameinfo.get("username");
 		this.gamesize = Integer.parseInt(gameinfo.get("gamesize"));
-		
+		System.out.println(gamesize);
 	}
 
 }

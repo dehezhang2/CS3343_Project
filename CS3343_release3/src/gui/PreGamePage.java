@@ -158,6 +158,8 @@ public class PreGamePage extends AbstractPage implements ButtonBindable{
 		// TODO Auto-generated method stub
 		HashMap<String, String> gameinfo = this.father.getInfo();
 		this.gamesize = Integer.parseInt(gameinfo.get("gamesize"));
+		GamePageController.getInstance().setFather(this);
+		((MainPage)this.father).setFather(this);
 	}
 
 }

@@ -22,6 +22,7 @@ public class MainPage extends AbstractPage implements ButtonBindable {
 	private Button start, score, setting;
 	
 	private SettingDialog dialog;
+	private ScoreDialog scoredialog;
 	private JFrame father;
 	
 	// Singleton
@@ -57,7 +58,7 @@ public class MainPage extends AbstractPage implements ButtonBindable {
 		start.bind(pregamePage);
 		
 		score = new Button("Scores", 230, 200);
-		ScoreDialog scoredialog = new ScoreDialog(this);
+		scoredialog = new ScoreDialog(this);
 		score.bind(scoredialog);
 		
 		setting = new Button("Settings", 230, 250);
@@ -94,9 +95,9 @@ public class MainPage extends AbstractPage implements ButtonBindable {
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-		
+//		score = new Button("Scores", 230, 200);
+		this.scoredialog.refresh();
 	}
-	
 
 }
 

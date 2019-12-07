@@ -28,16 +28,22 @@ public class ScoreDialog extends JDialog implements ButtonBindable{
 	}
 
 	private void renderTable(Container panel) {
+		panel = new JPanel();
 		ScoreBoard scoreboard = ScoreBoard.getInstance();
 		JTable scoretable = new JTable(scoreboard.getScores("data/1.txt"), columnNames);
+		String[][] arr = scoreboard.getScores("data/1.txt");
+		for(String[] record: arr) {
+			System.out.println(record[0] + " " +record[1] + " "+record[2] );
+		}
 		panel.add(new JScrollPane(scoretable));
+		this.setContentPane(panel);
 		scoretable.setEnabled(false);
 	}
 
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}
 

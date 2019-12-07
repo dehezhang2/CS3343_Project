@@ -8,7 +8,6 @@ import timer.Stoppable;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -16,25 +15,13 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-//import java.util.Timer;
-//import java.util.TimerTask;
-import java.util.Date;
 import java.util.HashMap;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import game.Main;
 import score.ScoreBoard;
 
 @SuppressWarnings("serial")
@@ -76,6 +63,7 @@ public class GamePage extends AbstractPage implements Stoppable{
 
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void showBackground() {
 		this.background = new Background("images/background.png",this.getWidth(), this.getHeight());
         
@@ -135,7 +123,7 @@ public class GamePage extends AbstractPage implements Stoppable{
 		
 		// Turn to post game page
         Point p = game.getLocation();
-		PostGamePage postgame=new PostGamePage(is_finished, username,score);
+		PostGamePage postgame=new PostGamePage(is_finished, username, gamesize, score);
 		
 		postgame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		postgame.setLayout(null);
